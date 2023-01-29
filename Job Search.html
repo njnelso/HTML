@@ -1,0 +1,53 @@
+<html>
+  <head>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['sankey']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'From');
+        data.addColumn('string', 'To');
+        data.addColumn('number', 'Weight');
+        data.addRows([
+          [ 'Applications: 19', 'Rejected: 7', 7 ],
+          [ 'Applications: 19', 'No Response: 11', 11 ],
+          [ 'Applications: 19', 'Reviewing: 2', 2 ],
+          [ 'Applications: 19', 'Phone Interview: 3', 3 ],
+          [ 'Messaged: 2', 'No Response: 11', 2 ],
+          [ 'Phone Interview: 3', 'Rejected: 7', 2 ],
+          [ 'Phone Interview: 3', 'Job Offer: 1', 1 ],
+          [ 'Job Offer: 1', 'Accepted: 1', 1 ]
+        ]);
+
+        // Sets chart options.
+        var options = {
+          width: 600,
+        };
+        var colors = ['#a6cee3', '#992c2c', '#fb9a99', '#fdbf6f',
+                  '#cab2d6', '#ffff99', '#1f78b4', '#33a02c'];
+
+        var options = {
+            height: 400,
+            sankey: {
+                node: {
+                    colors: colors
+                },
+                link: {
+                    colorMode: 'gradient',
+                    colors: colors
+                }
+            }
+        };
+
+        // Instantiates and draws our chart, passing in some options.
+        var chart = new google.visualization.Sankey(document.getElementById('sankey_basic'));
+        chart.draw(data, options);
+      }
+    </script>
+  </head>
+  <body>
+    <div id="sankey_basic" style="width: 1000px; height: 400px;"></div>
+  </body>
+</html>
